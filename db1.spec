@@ -1,44 +1,47 @@
+%define libname %mklibname db 1
 %define name db1
 %define version 1.85
-%define url http://www.sleepycat.com/update
-%define release 12mdk
+%define release %mkrel 13
 
 Summary: The BSD database library for C (version 1).
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source: %{url}/%{version}/db.%{version}.tar.bz2
+Source: %{url}/db.%{version}.tar.bz2
 Patch: db.%{version}.patch
 Patch1: db.%{version}-include.patch
-URL: http://www.sleepycat.com
+URL: ftp://ftp.sleepycat.com/releases
 License: BSD
 Group: System/Libraries
-PreReq: /sbin/ldconfig
 BuildRoot: %{_tmppath}/%{name}-root
-Prefix: %{_prefix}
-# this is a symlink not a real soname, so it has to be explicitely put
-# in a provides line -- pablo
-Provides: libdb1.so.2
-%ifnarch ia64
-Conflicts: glibc < 2.1.90
-%endif
+BuildRequires: bzip2
 
-%package devel
+%package -n %libname
+Summary: The BSD database library for C (version 1).
+Group: System/Libraries
+Provides: db1
+Obsoletes: db1
+
+%package -n %libname-devel
 Summary: Development libs/header files for Berkeley DB (version 1) library.
 Group: Development/C
-Prefix: %{_prefix}
-Requires: %{name} = %{version}
-%ifnarch ia64
-Conflicts: glibc-devel < 2.1.90
-%endif
+Requires: %{libname} = %{version}
+Provides: db1-devel
+Obsoletes: db1-devel
+
 %description
 The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
 embedded database support for both traditional and client/server applications.
 It should be installed if compatibility is needed with databases created
 with db1.
-This library used to be part of the glibc package.
 
-%description devel
+%description -n %libname
+The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
+embedded database support for both traditional and client/server applications.
+It should be installed if compatibility is needed with databases created
+with db1.
+
+%description -n %libname-devel
 The Berkeley Database (Berkeley DB) is a programmatic toolkit that provides
 embedded database support for both traditional and client/server applications.
 Berkeley DB includes B tree, Hashing, Fixed and Variable-length
@@ -53,7 +56,7 @@ Group: Databases
 Prefix: %{_prefix}
 
 %description tools
-Tools to manipulate Berkeley Databases (Berkeley DB).
+Tools to manipulate Berkeley database (version 1) databases.
 
 %prep
 %setup -q -n db.%{version}
@@ -61,7 +64,7 @@ Tools to manipulate Berkeley Databases (Berkeley DB).
 %patch1 -p1 -b .old
 
 %build
-gzip -9 docs/*.ps
+bzip2 docs/*.ps
 cd PORT/linux
 # otherwise "db1/db.h" not found
 ln -s include db1
@@ -69,7 +72,7 @@ ln -s include db1
 
 %install
 rm -rf ${RPM_BUILD_ROOT}
-mkdir -p ${RPM_BUILD_ROOT}%{_includedir}/db1
+mkdir -p ${RPM_BUILD_ROOT}%{_includedir}/%{name}
 mkdir -p ${RPM_BUILD_ROOT}/%{_libdir}
 mkdir -p ${RPM_BUILD_ROOT}/%{_bindir}
 
@@ -93,15 +96,14 @@ rm -rf ${RPM_BUILD_ROOT}
 
 %postun -p /sbin/ldconfig
 
-%files
+%files -n %libname
 %defattr(-,root,root)
-%doc README LICENSE changelog
 %{_libdir}/libdb1.so.*
 %{_libdir}/libdb.so.*
 
-%files devel
+%files -n %libname-devel
 %defattr(-,root,root)
-%doc docs/*.ps.gz
+%doc docs/*.ps.bz2 README changelog
 %{_includedir}/db1
 %{_libdir}/libdb1.a
 %{_libdir}/libdb1.so
