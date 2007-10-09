@@ -3,7 +3,7 @@
 %define version 1.85
 %define release %mkrel 13
 
-Summary: The BSD database library for C (version 1).
+Summary: The BSD database library for C (version 1)
 Name: %{name}
 Version: %{version}
 Release: %{release}
@@ -17,13 +17,13 @@ BuildRoot: %{_tmppath}/%{name}-root
 BuildRequires: bzip2
 
 %package -n %libname
-Summary: The BSD database library for C (version 1).
+Summary: The BSD database library for C (version 1)
 Group: System/Libraries
 Provides: db1
 Obsoletes: db1
 
 %package -n %libname-devel
-Summary: Development libs/header files for Berkeley DB (version 1) library.
+Summary: Development libs/header files for Berkeley DB (version 1) library
 Group: Development/C
 Requires: %{libname} = %{version}
 Provides: db1-devel
@@ -51,7 +51,7 @@ This package contains the header files, libraries, and documentation for
 building programs which use Berkeley DB.
 
 %package tools
-Summary: Tools for Berkeley DB (version 1) library.
+Summary: Tools for Berkeley DB (version 1) library
 Group: Databases
 Prefix: %{_prefix}
 
