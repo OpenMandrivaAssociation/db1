@@ -13,7 +13,6 @@ Patch1: db.%{version}-include.patch
 URL: ftp://ftp.sleepycat.com/releases
 License: BSD
 Group: System/Libraries
-BuildRoot: %{_tmppath}/%{name}-root
 BuildRequires: bzip2
 
 %package -n %libname
