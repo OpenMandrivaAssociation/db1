@@ -1,7 +1,7 @@
 %define libname %mklibname db 1
 %define name db1
 %define version 1.85
-%define release %mkrel 15
+%define release %mkrel 16
 
 Summary: The BSD database library for C (version 1)
 Name: %{name}
@@ -13,7 +13,7 @@ Patch1: db.%{version}-include.patch
 URL: ftp://ftp.sleepycat.com/releases
 License: BSD
 Group: System/Libraries
-BuildRoot: %{_tmppath}/%{name}-root
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: bzip2
 
 %package -n %libname
