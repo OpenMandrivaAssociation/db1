@@ -92,9 +92,13 @@ install -s -m755 db_dump185		$RPM_BUILD_ROOT/%{_bindir}/db1_dump185
 %clean
 rm -rf ${RPM_BUILD_ROOT}
 
+%if %mdkversion < 200900
 %post -p /sbin/ldconfig
+%endif
 
+%if %mdkversion < 200900
 %postun -p /sbin/ldconfig
+%endif
 
 %files -n %libname
 %defattr(-,root,root)
