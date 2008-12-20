@@ -1,15 +1,16 @@
 %define libname %mklibname db 1
 %define name db1
 %define version 1.85
-%define release %mkrel 17
+%define release %mkrel 18
 
 Summary: The BSD database library for C (version 1)
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source: %{url}/db.%{version}.tar.bz2
-Patch: db.%{version}.patch
+Source0: %{url}/db.%{version}.tar.bz2
+Patch0: db.%{version}.patch
 Patch1: db.%{version}-include.patch
+Patch2: db.1.85-LDFLAGS.diff
 URL: ftp://ftp.sleepycat.com/releases
 License: BSD
 Group: System/Libraries
@@ -59,16 +60,18 @@ Prefix: %{_prefix}
 Tools to manipulate Berkeley database (version 1) databases.
 
 %prep
+
 %setup -q -n db.%{version}
-%patch -p1
+%patch0 -p1
 %patch1 -p1 -b .old
+%patch2 -p0 -b .LDFLAGS
 
 %build
 bzip2 docs/*.ps
 cd PORT/linux
 # otherwise "db1/db.h" not found
 ln -s include db1
-%make OORG="$RPM_OPT_FLAGS" 
+%make OORG="$RPM_OPT_FLAGS" LDFLAGS="%{ldflags}"
 
 %install
 rm -rf ${RPM_BUILD_ROOT}
