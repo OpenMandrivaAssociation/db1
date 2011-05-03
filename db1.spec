@@ -1,7 +1,7 @@
 %define libname %mklibname db 1
 %define name db1
 %define version 1.85
-%define release %mkrel 21
+%define release %mkrel 22
 
 Summary: The BSD database library for C (version 1)
 Name: %{name}
