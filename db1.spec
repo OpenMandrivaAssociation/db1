@@ -74,26 +74,26 @@ ln -s include db1
 %make OORG="$RPM_OPT_FLAGS" LDFLAGS="%{ldflags}"
 
 %install
-rm -rf ${RPM_BUILD_ROOT}
-mkdir -p ${RPM_BUILD_ROOT}%{_includedir}/%{name}
-mkdir -p ${RPM_BUILD_ROOT}/%{_libdir}
-mkdir -p ${RPM_BUILD_ROOT}/%{_bindir}
+rm -rf %{buildroot}
+mkdir -p %{buildroot}%{_includedir}/%{name}
+mkdir -p %{buildroot}/%{_libdir}
+mkdir -p %{buildroot}/%{_bindir}
 
 sed -n '/^\/\*-/,/^ \*\//s/^.\*.\?//p' include/db.h | grep -v '^@.*db\.h' > LICENSE
 
 cd PORT/linux
 sover=`echo libdb.so.* | sed 's/libdb.so.//'`
-install -m644 libdb.a			$RPM_BUILD_ROOT/%{_libdir}/libdb1.a
-install -m755 libdb.so.$sover		$RPM_BUILD_ROOT/%{_libdir}/libdb1.so.$sover
-ln -sf libdb1.so.$sover 		$RPM_BUILD_ROOT/%{_libdir}/libdb1.so
-ln -sf libdb1.so.$sover			$RPM_BUILD_ROOT/%{_libdir}/libdb.so.$sover
-install -m644 ../include/ndbm.h		$RPM_BUILD_ROOT/%{_includedir}/db1/
-install -m644 ../../include/db.h	$RPM_BUILD_ROOT/%{_includedir}/db1/
-install -m644 ../../include/mpool.h	$RPM_BUILD_ROOT/%{_includedir}/db1/
-install -s -m755 db_dump185		$RPM_BUILD_ROOT/%{_bindir}/db1_dump185
+install -m644 libdb.a			%{buildroot}/%{_libdir}/libdb1.a
+install -m755 libdb.so.$sover		%{buildroot}/%{_libdir}/libdb1.so.$sover
+ln -sf libdb1.so.$sover 		%{buildroot}/%{_libdir}/libdb1.so
+ln -sf libdb1.so.$sover			%{buildroot}/%{_libdir}/libdb.so.$sover
+install -m644 ../include/ndbm.h		%{buildroot}/%{_includedir}/db1/
+install -m644 ../../include/db.h	%{buildroot}/%{_includedir}/db1/
+install -m644 ../../include/mpool.h	%{buildroot}/%{_includedir}/db1/
+install -s -m755 db_dump185		%{buildroot}/%{_bindir}/db1_dump185
 
 %clean
-rm -rf ${RPM_BUILD_ROOT}
+rm -rf %{buildroot}
 
 %if %mdkversion < 200900
 %post -p /sbin/ldconfig
