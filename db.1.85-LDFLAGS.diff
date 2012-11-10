@@ -1,0 +1,24 @@
+--- PORT/linux/Makefile	2008-12-20 17:17:30.000000000 +0100
++++ PORT/linux/Makefile.oden	2008-12-20 17:19:35.000000000 +0100
+@@ -21,6 +21,7 @@
+ MISC=
+ OBJS=	$(OBJ1) $(OBJ2) $(OBJ3) $(OBJ4) $(OBJ5) $(MISC)
+ SHOBJS=	$(patsubst %.o,%.os,$(OBJS))
++LDFLAGS=
+ 
+ all: $(LIBDB) $(LIBDBSO) $(PROG)
+ 
+@@ -30,11 +31,11 @@
+ 	ranlib $@
+ 
+ $(LIBDBSO): $(SHOBJS)
+-	$(CC) -Wl,-O1 -Wl,--version-script=libdb.map -Wl,-soname=$(LIBDBSO) -shared -o $@ $^
++	$(CC) -Wl,-O1 -Wl,--version-script=libdb.map -Wl,-soname=$(LIBDBSO) $(LDFLAGS) -shared -o $@ $^
+ 	ln -sf $@ libdb.so
+ 
+ $(PROG): db_dump185.o $(LIBDBSO)
+-	$(CC) -o $@ db_dump185.o -L. -ldb
++	$(CC) -o $@ db_dump185.o $(LDFLAGS) -L. -ldb
+ 
+ clean:
+ 	rm -f $(LIBDB) $(LIBDBSO) $(OBJS) $(SHOBJS)

@@ -1,0 +1,11 @@
+--- db.1.85/PORT/include/ndbm.h.old	Tue Nov 28 21:46:28 2000
++++ db.1.85/PORT/include/ndbm.h	Tue Nov 28 21:46:36 2000
+@@ -39,7 +39,7 @@
+ #ifndef _NDBM_H
+ #define	_NDBM_H 1
+ 
+-#include <db.h>
++#include <db1/db.h>
+ 
+ /* Map dbm interface onto db(3). */
+ #define DBM_RDONLY	O_RDONLY
