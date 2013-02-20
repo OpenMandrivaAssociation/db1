@@ -5,6 +5,7 @@ Name:		db1
 Version:	1.85
 Release:	25
 Source0:	%{url}/db.%{version}.tar.bz2
+Source100:	db1.rpmlintrc
 Patch0:		db.%{version}.patch
 Patch1:		db.%{version}-include.patch
 Patch2:		db.1.85-LDFLAGS.diff
