@@ -1,5 +1,5 @@
---- PORT/linux/Makefile	2008-12-20 17:17:30.000000000 +0100
-+++ PORT/linux/Makefile.oden	2008-12-20 17:19:35.000000000 +0100
+--- ./PORT/linux/Makefile	2008-12-20 17:17:30.000000000 +0100
++++ ./PORT/linux/Makefile.oden	2008-12-20 17:19:35.000000000 +0100
 @@ -21,6 +21,7 @@
  MISC=
  OBJS=	$(OBJ1) $(OBJ2) $(OBJ3) $(OBJ4) $(OBJ5) $(MISC)
