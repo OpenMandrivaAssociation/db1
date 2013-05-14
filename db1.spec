@@ -58,7 +58,7 @@ bzip2 docs/*.ps
 cd PORT/linux
 # otherwise "db1/db.h" not found
 ln -s include db1
-%make OORG="%{optflags}" LDFLAGS="%{ldflags}"
+%make CC=%{__cc} OORG="%{optflags}" LDFLAGS="%{ldflags}"
 
 %install
 mkdir -p %{buildroot}%{_includedir}/%{name}
@@ -76,7 +76,7 @@ ln -sf libdb1.so.$sover %{buildroot}/%{_libdir}/libdb.so.$sover
 install -m644 ../include/ndbm.h %{buildroot}/%{_includedir}/db1/
 install -m644 ../../include/db.h %{buildroot}/%{_includedir}/db1/
 install -m644 ../../include/mpool.h %{buildroot}/%{_includedir}/db1/
-install -s -m755 db_dump185 %{buildroot}/%{_bindir}/db1_dump185
+install -m755 db_dump185 %{buildroot}/%{_bindir}/db1_dump185
 
 %files -n %libname
 %{_libdir}/libdb1.so.*
