@@ -3,7 +3,7 @@
 Summary:	The BSD database library for C (version 1)
 Name:		db1
 Version:	1.85
-Release:	28
+Release:	29
 License:	BSD
 Group:		System/Libraries
 Url:		ftp://ftp.sleepycat.com/releases
