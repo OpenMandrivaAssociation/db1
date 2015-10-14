@@ -1,9 +1,10 @@
 %define libname %mklibname db 1
+%define _disable_lto 1
 
 Summary:	The BSD database library for C (version 1)
 Name:		db1
 Version:	1.85
-Release:	33
+Release:	34
 License:	BSD
 Group:		System/Libraries
 Url:		ftp://ftp.sleepycat.com/releases
