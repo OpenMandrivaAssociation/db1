@@ -4,7 +4,7 @@
 Summary:	The BSD database library for C (version 1)
 Name:		db1
 Version:	1.85
-Release:	34
+Release:	35
 License:	BSD
 Group:		System/Libraries
 Url:		ftp://ftp.sleepycat.com/releases
@@ -13,7 +13,7 @@ Source100:	db1.rpmlintrc
 Patch0:		db.%{version}.patch
 Patch1:		db.%{version}-include.patch
 Patch2:		db.1.85-LDFLAGS.diff
-BuildRequires:	bzip2
+BuildRequires:	pkgconfig(bzip2)
 
 %package -n %{libname}
 Summary:	The BSD database library for C (version 1)
