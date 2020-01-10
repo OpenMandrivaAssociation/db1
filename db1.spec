@@ -52,7 +52,7 @@ Tools to manipulate Berkeley database (version 1) databases.
 
 %prep
 %setup -qn db.%{version}
-%apply_patches
+%autopatch -p1
 
 %build
 bzip2 docs/*.ps
