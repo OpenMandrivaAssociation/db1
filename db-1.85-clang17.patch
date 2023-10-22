@@ -1,0 +1,11 @@
+diff -up db.1.85/PORT/linux/db_dump185.c.omv~ db.1.85/PORT/linux/db_dump185.c
+--- db.1.85/PORT/linux/db_dump185.c.omv~	2023-10-22 22:02:49.747948395 +0200
++++ db.1.85/PORT/linux/db_dump185.c	2023-10-22 22:04:15.891927751 +0200
+@@ -25,6 +25,7 @@ static const char sccsid[] = "@(#)db_dum
+ #endif
+ 
+ #include "db.h"
++extern void err(int x, const char *fmt, ...);
+ 
+ /* Hash Table Information */
+ typedef struct hashhdr185 {		/* Disk resident portion */

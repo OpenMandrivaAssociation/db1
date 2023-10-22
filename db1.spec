@@ -1,10 +1,12 @@
+%global optflags %{optflags} -fPIC
+
 %define libname %mklibname db 1
 %define _disable_lto 1
 
 Summary:	The BSD database library for C (version 1)
 Name:		db1
 Version:	1.85
-Release:	37
+Release:	38
 License:	BSD
 Group:		System/Libraries
 Url:		ftp://ftp.sleepycat.com/releases
@@ -13,6 +15,7 @@ Source100:	db1.rpmlintrc
 Patch0:		db.%{version}.patch
 Patch1:		db.%{version}-include.patch
 Patch2:		db.1.85-LDFLAGS.diff
+Patch3:		db-1.85-clang17.patch
 BuildRequires:	pkgconfig(bzip2)
 
 %package -n %{libname}
@@ -91,4 +94,3 @@ install -m755 db_dump185 %{buildroot}/%{_bindir}/db1_dump185
 
 %files tools
 %{_bindir}/db1_dump185
-
