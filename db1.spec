@@ -16,6 +16,7 @@ Patch0:		db.%{version}.patch
 Patch1:		db.%{version}-include.patch
 Patch2:		db.1.85-LDFLAGS.diff
 Patch3:		db-1.85-clang17.patch
+BuildRequires:	make
 BuildRequires:	pkgconfig(bzip2)
 
 %package -n %{libname}
